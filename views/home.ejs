@@ -1,0 +1,22 @@
+<% if(locals.isLoggedIn){ %>
+  <h1>Welcome <%= locals.user.name %></h1>
+  <a href='/logout'>Logout</a>
+  <a href='/edit'>Edit profile</a>
+<% } else { %>
+  <a href='/signin'>Login</a>
+  or
+  <a href='/users/new'>Sign up</a>
+  <% } %>
+<h1>Homepage</h1>
+
+<h2>Restuarants</h2>
+<% users.forEach(users => { %>
+  <p><%= users.name %></p>
+  <p><%= users.email %></p>
+  <p><%= users.password %></p>
+  <p><%= users.isRestuarant %></p>
+  <p><%= users.address %></p>
+  <p><%= users.city %></p>
+  <p><%= users.cuisine %></p>
+  <p><%= users.comments %></p>
+<% }) %>

@@ -1,19 +1,38 @@
-//------------------------- USER CONTROLLER -----------------------------
+const User = require('../models/user');
 
-//require model
+function usersIndex(req, res){
+  User
+    .find({isRestuarant: 'true' })
+    .exec()
+    .then(users => {
+      res.render('home', {users});
+    });
+}
 
-//RESTFUL
+function usersNew(req, res) {
+  res.render('sessions/new');
+}
 
-// Index - my reviews
+function usersCreate(req, res) {
+  User
+    .create(req.body)
+    .then(() => res.redirect('/'));
+}
 
-// Show - a review
+function usersEdit(req, res) {
+  User
+    .findById(req.params.id)
+    .exec()
+    .then(user => res.render('users/edit', {user}));
+}
 
-// delete - delete a review
 
-// new/create - write a new review
-
-// edit/update - update your review
-
-// registration options
-
-// module export
+module.exports = {
+  index: usersIndex,
+  // show: usersShow,
+  // delete: usersDelete,
+  new: usersNew,
+  create: usersCreate,
+  edit: usersEdit
+  // update: usersUpdate
+};

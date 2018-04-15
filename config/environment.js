@@ -1,6 +1,4 @@
-// -------------------- ENVIRONMENT --------------------------------------------
+const databaseURI = 'mongodb://localhost/restaurant-review';
+const port = 3000;
 
-//database uri
-//port
-
-//module export
+module.exports = {databaseURI, port};

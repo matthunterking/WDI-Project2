@@ -1,21 +1,44 @@
-//--------------------------- USER MODEL ---------------------------------------
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+mongoose.Promise = require('bluebird');
 
-//require mongoose
-//require restuarant model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: { type: String},
+  isRestuarant: String,
+  address: String,
+  city: String,
+  cuisine: String,
+  comments: String
+});
 
-//USER SCHEMA
-//      name (required) STRING
-//      userName (required) STRING
-//      email address (required unique) STRING
-//      reviews {linked to RESTURANT}
-//      rating {linked to RESTURANT}
+userSchema
+  .virtual('passwordConfirmation')
+  .set(function setPasswordConfirmation(passwordConfirmation){
+    this._passwordConfirmation = passwordConfirmation;
+  });
 
-//VALIDATE PASSWORD
+userSchema.pre('validate', function checkPassword(next){
+  if(this.isModified('password') && this._passwordConfirmation !== this.password){
+    this.invalidate('passwordConfirmation', 'does not match');
+  }
+  next();
+});
 
-//PASSWORD CONFIRMATION
 
-//VALIDATE PASSWORD
+userSchema.methods.validatePassword = function validatePassword(password){
+  return bcrypt.compareSync(password, this.password);
+};
 
-//HASH PASSWORD
 
-//EXPORT
+
+userSchema.pre('save', function HashPassword(next) {
+  if(this.isModified('password')){
+    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
+  }
+  next();
+});
+
+
+module.exports = mongoose.model('User', userSchema);

@@ -1,45 +1,60 @@
-// ------------------------ Packages ------------------------------------------
+const express             = require('express');
+const app                 = express();
+const bodyParser          = require('body-Parser');
+const methodOverride      = require('method-override');
+const morgan              = require('morgan');
+const mongoose            = require('mongoose');
+const expressLayouts      = require('express-ejs-layouts');
+const router              = require('./config/router');
+mongoose.Promise          = require('bluebird');
+const session             = require('express-session');
+const flash               = require('express-flash');
+const User                = require('./models/user');
 
-//express
-//app=express
-//body parser
-//method Override
-//morgan
-//express layouts
-//mongoose
-//bluebird
+const {port, databaseURI} = require('./config/environment');
 
-//--------------------------- Links to routes and config -----------------------
+mongoose.connect(databaseURI);
 
-// routes
-// environment
 
-//--------------------------- Connect to mongoose ------------------------------
+app.set('view engine', 'ejs');
+app.set('views', `${__dirname}/views`);
+app.use(express.static(`${__dirname}/public`));
 
-//mongoose.Connect
+app.use(morgan('dev'));
+app.use(expressLayouts);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride(req => {
+  if(req.body && typeof req.body === 'object' && '_method' in req.body) {
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 
-//--------------------------- View Engine --------------------------------------
 
-//set view Engine
-//set views
-//express static
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
 
-//---------------------------- Link to packages --------------------------------
+app.use(flash());
 
-//morgan
-//expresslayouts
-//body parser
-//method Override
-//routes
+app.use((req, res, next) =>{
+  console.log(`request session user id  is ${req.session.userId} before middleware`);
+  if(!req.session.userId) return next();
+  User
+    .findById(req.session.userId)
+    .then((user) =>{
+      req.session.userId._id = user._id;
+      console.log(`user._id  is ${user._id}`);
+      res.locals.user = user;
+      res.locals.isLoggedIn = true;
+      console.log(`request locals is logged in is ${res.locals.isLoggedIn} after middleware`);
+      next();
+    });
+});
 
-//----------------------------- Encoded ----------------------------------------
+app.use(router);
 
-//body parser url Encoded
-
-//----------------------------- Routes -----------------------------------------
-
-//Use Routes
-
-//------------------------------ Listen ----------------------------------------
-
-//listen on port..
+app.listen(port, () => console.log(`Running on ${port}`));
