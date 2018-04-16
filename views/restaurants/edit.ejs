@@ -1,0 +1,28 @@
+<h1>Edit Restaurant</h1>
+
+<h2><%= restaurant.restaurantName %></h2>
+<div>
+  <form class="" action="/restaurant/<%= restaurant._id %>" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" name="restaurantName" id="restaurantName" value="<%= restaurant.restaurantName %>">
+    <label for="restaurantName">Name</label>
+
+    <input type="text" name="address" id="address" value="<%= restaurant.address %>">
+    <label for="address">address</label>
+
+    <input type="text" name="city" id="city" value="<%= restaurant.city %>">
+    <label for="city">city</label>
+
+    <input type="text" name="cuisine" id="cuisine" value="<%= restaurant.cuisine %>">
+    <label for="cuisine">cuisine</label>
+
+    <button>SAVE</button>
+
+  </form>
+
+<form action="/restaurant/<%= restaurant.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button>DELETE Restaurant</button>
+</form>
+
+</div>
