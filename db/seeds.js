@@ -11,6 +11,8 @@ User.collection.drop();
 User.create([{
   name: 'a',
   email: 'a@a.com',
+  password: 'a',
+  passwordConfirmation: 'a',
   isRestuarant: true,
   address: 'a',
   city: 'a',

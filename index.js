@@ -40,9 +40,9 @@ app.use(session({
 
 app.use(flash());
 
-app.use((req, res, next) =>{
-  console.log(`request session user id  is ${req.session.userId} before middleware`);
+app.use((req, res, next) => {
   if(!req.session.userId) return next();
+
   User
     .findById(req.session.userId)
     .then((user) =>{
@@ -50,7 +50,6 @@ app.use((req, res, next) =>{
       console.log(`user._id  is ${user._id}`);
       res.locals.user = user;
       res.locals.isLoggedIn = true;
-      console.log(`request locals is logged in is ${res.locals.isLoggedIn} after middleware`);
       next();
     });
 });

@@ -1,7 +1,9 @@
 <% if(locals.isLoggedIn){ %>
   <h1>Welcome <%= locals.user.name %></h1>
+  <h1>Locals user id is <%= locals.user.id %></h1>
+  <h1>Locals is <%= locals.user %></h1>
   <a href='/logout'>Logout</a>
-  <a href='/edit'>Edit profile</a>
+  <a href='/users/<%= user._id %>'>My profile</a>
 <% } else { %>
   <a href='/signin'>Login</a>
   or
@@ -19,4 +21,5 @@
   <p><%= users.city %></p>
   <p><%= users.cuisine %></p>
   <p><%= users.comments %></p>
+  <a href="/restuarant/<%= users._id %>">View Restuarant</a>
 <% }) %>

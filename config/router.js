@@ -19,18 +19,29 @@ router.route('/register')
   .get(users.new)
   .post(users.create);
 
-router.route('/user/:id')
-  .get(users.edit);
+router.route('/users/new')
+  .get(users.new);
 
 router.route('/signin')
   .get(sessions.new)
   .post(sessions.create);
 
-router.route('/users/new')
-  .get(users.new);
-
 router.route('/logout')
   .get(sessions.delete);
+
+router.route('/restuarant/:id')
+  .get(users.restaurantShow);
+
+
+router.route('/users/:id')
+  .get(users.show)
+  .put(users.update)
+  .delete(users.delete);
+
+
+router.route('/users/:id/edit')
+  .get(users.edit);
+
 
 
 router.route('/*').get((rew, res) => {

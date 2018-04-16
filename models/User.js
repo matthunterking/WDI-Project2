@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: { type: String},
-  isRestuarant: String,
+  isRestuarant: {type: Boolean},
   address: String,
   city: String,
   cuisine: String,
