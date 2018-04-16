@@ -54,6 +54,17 @@ function restaurantsDelete(req, res) {
     .then(() => res.redirect('/'));
 }
 
+function restaurantComment(req, res) {
+  Restaurant
+    .findById(req.params.id)
+    .exec()
+    .then(restaurant => {
+      restaurant.comments.push(req.body.comments);
+      return restaurant.save();
+    })
+    .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
+}
+
 module.exports = {
   index: restaurantIndex,
   show: restaurantShow,
@@ -61,5 +72,6 @@ module.exports = {
   create: restaurantsCreate,
   edit: restaurantsEdit,
   update: restaurantsUpdate,
-  delete: restaurantsDelete
+  delete: restaurantsDelete,
+  comments: restaurantComment
 };

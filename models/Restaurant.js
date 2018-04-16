@@ -6,7 +6,7 @@ const restaurantSchema = new mongoose.Schema({
   address: String,
   city: String,
   cuisine: String,
-  comments: String
+  comments: [{type: String}]
   // owner: {type: mongoose.Schema.ObjectId, ref: 'User'}
 });
 

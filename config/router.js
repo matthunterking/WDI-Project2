@@ -37,7 +37,9 @@ router.route('/logout')
 router.route('/restaurant/:id')
   .get(restaurants.show)
   .put(restaurants.update)
-  .delete(restaurants.delete);
+  .delete(restaurants.delete)
+  .post(restaurants.comments);
+
 
 
 router.route('/users/:id')
