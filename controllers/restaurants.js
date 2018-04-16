@@ -55,11 +55,12 @@ function restaurantsDelete(req, res) {
 }
 
 function restaurantComment(req, res) {
+  console.log(req.body);
   Restaurant
     .findById(req.params.id)
     .exec()
     .then(restaurant => {
-      restaurant.comments.push(req.body.comments);
+      restaurant.comments.push(req.body);
       return restaurant.save();
     })
     .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
