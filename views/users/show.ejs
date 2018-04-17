@@ -15,10 +15,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col s5 offset-s1">
+  <div class="col s2">
     <a class="waves-effect waves-light blue btn" href='/users/<%= user._id %>/edit'><i class="material-icons left">edit</i>Edit profile</a>
   </div>
-  <div class="col s5 offset-s1">
+  <div class="col s4 offset-s1">
+    <a class="waves-effect waves-light orange btn" href='/'><i class="material-icons left">home</i>Return to Homepage</a>
+  </div>
+  <div class="col s2 offset-s1">
+    <a class="waves-effect waves-light purple btn" href='/user/<%= user._id %>/myreviews'><i class="material-icons left">home</i>My Reviews</a>
+  </div>
+  <div class="col s3 offset-s1">
     <form action="/users/<%= user.id %>" method="post">
       <input type="hidden" name="_method" value="DELETE">
       <button class="waves-effect waves-light red btn"><i class="material-icons left">delete</i>Delete Profile</button>

@@ -11,7 +11,6 @@ function restaurantIndex(req, res){
 
 
 function restaurantShow(req, res) {
-  console.log(req.params.id);
   Restaurant
     .findById(req.params.id)
     .populate('comments.createdBy')
@@ -73,6 +72,20 @@ function restaurantComment(req, res) {
     })
     .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
 }
+
+// function restaurantShowReviews(req, res) {
+//   Restaurant
+//     .find()
+//     .exec()
+//     .then(restaurants => {
+//       console.log(restaurants);
+//
+//       const userReviews = [];
+//
+//       // loop over restaurants
+//         // loop comments of singular restaurant
+//           // comment.createdBy === req.currentUser.id
+//             // userReviews.push(comment)
 
 
 

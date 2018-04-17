@@ -42,6 +42,15 @@
                         <% } else if (comments.rating === 'D'){ %>
                           <i class="material-icons icon-red">thumb_down</i>
                         <% } %>
+                      <% if(locals.isLoggedIn) { %>
+                        <% if(comments.createdBy._id.toString() === user._id.toString()) { %>
+                          <form class="col s12" action="/comments/<%= restaurant._id %>" method="POST">
+                          <input type="hidden" name="restuarantid" value="<%= restaurant._id %>"></input>
+                          <input type="hidden" name="commentid" value="<%= comments._id %>"></input>
+                          <button class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">edit</i></button>
+                          </form>
+                        <% } %>
+                      <% } %>
                       </span>
                 </td>
             </tr>

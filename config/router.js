@@ -2,6 +2,7 @@ const router      = require('express').Router();
 const users       = require('../controllers/users');
 const sessions    = require('../controllers/sessions');
 const restaurants = require('../controllers/restaurants');
+const comments = require('../controllers/comments');
 
 function secureRoute(req, res, next){
   if(!req.session.userId){
@@ -36,28 +37,26 @@ router.route('/logout')
 
 router.route('/restaurant/:id')
   .get(restaurants.show)
-  .put(restaurants.update)
-  .delete(restaurants.delete)
+  .put(secureRoute, restaurants.update)
+  .delete(secureRoute, restaurants.delete)
   .post(restaurants.comments);
 
-
-
 router.route('/users/:id')
-  .get(users.show)
-  .put(users.update)
-  .delete(users.delete);
+  .get(secureRoute, users.show)
+  .put(secureRoute, users.update)
+  .delete(secureRoute, users.delete);
 
+router.route('/comments/:id')
+  .post(secureRoute, comments.edit);
 
 router.route('/users/:id/edit')
-  .get(users.edit);
+  .get(secureRoute, users.edit);
 
 router.route('/restaurant/:id/edit')
-  .get(restaurants.edit);
-
-
+  .get(secureRoute, restaurants.edit);
 
 router.route('/*').get((rew, res) => {
-  res.render('statics/404');
+  res.render('/statics/404');
 });
 
 module.exports = router;
