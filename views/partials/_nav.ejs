@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav-wrapper indigo darken-4">
+    <a href="/" class="brand-logo left">Nibble</a>
+    <ul id="nav-mobile" class="right">
+      <% if(locals.isLoggedIn){ %>
+        <li>Welcome <%= locals.user.name %></li>
+        <li><a href='/logout'>Logout</a></li>
+        <li><a href='/users/<%= user._id %>'>My profile</a></li>
+      <% } else { %>
+        <li><a href='/signin'>Login</a></li>
+        <li><a href='/register'>Sign up</a></li>
+        <li><a href='/restaurant/new'>Add a Restaurant</a></li>
+    <% } %>
+    </ul>
+  </div>
+</nav>

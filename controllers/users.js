@@ -41,7 +41,7 @@ function usersDelete(req, res) {
     .findById(req.params.id)
     .exec()
     .then(user => user.remove())
-    .then(() => res.redirect('/'));
+    .then(req.session.regenerate(() => res.redirect('/')));
 }
 
 

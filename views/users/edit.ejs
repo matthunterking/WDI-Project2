@@ -1,6 +1,19 @@
 <h1>Edit profile</h1>
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
+      </div>
+      <div class="col s6">
+        <span class="black-text">
+          <%= user.name %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2><%= user.name %></h2>
 <div>
   <form class="" action="/users/<%= user._id %>" method="post">
     <input type="hidden" name="_method" value="PUT">
@@ -15,6 +28,9 @@
 
     <input type="text" name="city" id="city_field" value="<%= user.city %>">
     <label for="city_field">city</label>
+
+    <input type="text" name="profileImg" id="profileImg" value="<%= user.profileImg %>">
+    <label for="profileImg">Profile Picture</label>
 
     <div>
       <label for="password">Password</label>

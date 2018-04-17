@@ -1,31 +1,68 @@
-<h1>Viewing Restuarant profile in show</h1>
+<div class="container">
+  <h5 class=center-align><%= restaurant.restaurantName %></h5>
+  <img class='center-align responsive-img customimg' src="<%= restaurant.img %>">
+  <p>Address: <%= restaurant.address %></p>
+  <p>City: <%= restaurant.city %></p>
+  <p>Postcode: <%= restaurant.postcode %></p>
+  <p>Cuisine: <%= restaurant.cuisine %></p>
 
-<h2>The restaurant id is <%= restaurant.id %></h2>
-<% if(locals.isLoggedIn){ %>
-  <h2>The user  id is <%= user._id %> %></h2>
-  <h2>The user is logged in is <%= user._id %> %></h2>
-  <% } %>
-
-<h2>User ID is <%= user._id %> %></h2>
-
-
-<h2><%= restaurant.restaurantName %></h2>
-<p><%= restaurant.address %></p>
-<p><%= restaurant.city %></p>
-<p><%= restaurant.cuisine %></p>
-<% restaurant.comments.forEach(comments => { %>
-    <li>This was the comment - <%= comments.comment %></li>
-    <li>This was the id who made it<%= comments.userId %></li>
-  <% }) %>
+ <% if(restaurant.comments.length > 0){ %>
+   <table>
+      <thead>
+        <tr class='row rowHeight'>
+          <th class='col s4 center-align'>Nibbler</th>
+          <th class='col s6 center-align'>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% restaurant.comments.forEach(comments => { %>
+            <% if(comments.createdBy) { %>
+            <tr class='row rowHeight'>
+                <td class='col s1'>
+                        <img src="<%= comments.createdBy.profileImg %>" alt="" class="circle responsive-img">
+                </td>
+                <td class='col s5 center-align'>
+                  <div class="valign-wrapper">
+                        <span class="black-text">
+                          <%= comments.createdBy.name %>
+                        </span>
+                  </div>
+                </td>
+                <td class='col s6'>
+                      <span class="black-text">
+                        <%= comments.comment %>
+                      </span>
+                </td>
+            </tr>
+            <% } %>
+          <% }) %>
+      </tbody>
+  </table>
+<% } else { %>
+  <p>Be the first to review <%= restaurant.restaurantName %></p>
+<% } %>
 <hr>
-<form class="" action="/restaurant/<%= restaurant._id %>" method="POST">
-  <input type="text" name="comment" id="comment" value="">
-  <label for="comment">comments</label>
-  <input type="hidden" name="userId" value="<%= user._id %>">
-  <button>Submit</button>
-</form>
+ <% if(locals.isLoggedIn){ %>
+   <div class="row">
+     <form class="col s12" action="/restaurant/<%= restaurant._id %>" method="POST">
+       <div class="row">
+         <div class="input-field col s12">
+           <textarea name="comment" id="comment" class="materialize-textarea"></textarea>
+           <label for="comment">Write your review here</label>
+         </div>
+         <input type="hidden" name="createdBy" value="<%= user._id %>">
+         <button class="green btn">Submit</button>
+       </div>
+     </form>
+   </div>
+<% } else { %>
+  <p>You must be logged in to make a comment</p>
+  <a href='/signin'>Login</a>
+  <a href='/register'>Sign up</a>
+<% } %>
+
+</div>
+
 <hr>
 
 <a href='/restaurant/<%= restaurant._id %>/edit'>Edit Restaurant</a>
-
-</div>

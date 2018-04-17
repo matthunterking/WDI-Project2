@@ -48,7 +48,6 @@ app.use((req, res, next) => {
     .findById(req.session.userId)
     .then((user) =>{
       req.session.userId._id = user._id;
-      console.log(`user._id  is ${user._id}`);
       res.locals.user = user;
       res.locals.isLoggedIn = true;
       next();

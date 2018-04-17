@@ -1,14 +1,28 @@
-<h1>Show profile</h1>
-
-<a href='/users/<%= user._id %>/edit'>Edit profile</a>
-
-
-<p><%= user.id %></p>
-<p><%= user.name %></p>
-<p><%= user.email %></p>
-<p><%= user.password %></p>
-<p><%= user.isRestuarant %></p>
-<p><%= user.address %></p>
-<p><%= user.city %></p>
-<p><%= user.cuisine %></p>
-<p><%= user.comments %></p>
+<div class="container">
+<h5>My profile</h5>
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
+      </div>
+      <div class="col s6">
+        <span class="black-text">
+          <%= user.name %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s5 offset-s1">
+    <a class="waves-effect waves-light blue btn" href='/users/<%= user._id %>/edit'><i class="material-icons left">edit</i>Edit profile</a>
+  </div>
+  <div class="col s5 offset-s1">
+    <form action="/users/<%= user.id %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="waves-effect waves-light red btn"><i class="material-icons left">delete</i>Delete Profile</button>
+    </form>
+</div>
+</div>
+</div>

@@ -3,12 +3,13 @@ mongoose.Promise = require('bluebird');
 
 const restaurantSchema = new mongoose.Schema({
   restaurantName: String,
+  img: String,
   address: String,
   city: String,
   cuisine: String,
   comments: [{
     comment: String,
-    userId: String
+    createdBy: {type: mongoose.Schema.ObjectId, ref: 'User'}
   }]
   // owner: {type: mongoose.Schema.ObjectId, ref: 'User'}
 });

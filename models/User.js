@@ -5,7 +5,8 @@ mongoose.Promise = require('bluebird');
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
-  password: { type: String }
+  password: { type: String },
+  profileImg: String
 });
 
 userSchema

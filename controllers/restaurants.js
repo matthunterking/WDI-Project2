@@ -11,11 +11,15 @@ function restaurantIndex(req, res){
 
 
 function restaurantShow(req, res) {
+  console.log(req.params.id);
   Restaurant
     .findById(req.params.id)
+    .populate('comments.createdBy')
     .exec()
     .then(restaurant => res.render('restaurants/show', {restaurant}));
 }
+
+
 
 function restaurantsNew(req, res) {
   res.render('restaurants/new');
@@ -55,7 +59,6 @@ function restaurantsDelete(req, res) {
 }
 
 function restaurantComment(req, res) {
-  console.log(req.body);
   Restaurant
     .findById(req.params.id)
     .exec()
@@ -65,6 +68,8 @@ function restaurantComment(req, res) {
     })
     .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
 }
+
+
 
 module.exports = {
   index: restaurantIndex,
