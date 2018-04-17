@@ -5,6 +5,8 @@
   <p>City: <%= restaurant.city %></p>
   <p>Postcode: <%= restaurant.postcode %></p>
   <p>Cuisine: <%= restaurant.cuisine %></p>
+  <p><i class="material-icons icon-green">thumb_up</i><%= restaurant.upVotes %></p>
+  <p><i class="material-icons icon-red">thumb_down</i><%= restaurant.downVotes %></p>
 
  <% if(restaurant.comments.length > 0){ %>
    <table>
@@ -28,9 +30,18 @@
                         </span>
                   </div>
                 </td>
-                <td class='col s6'>
+                <td class='col s5'>
                       <span class="black-text">
                         <%= comments.comment %>
+                      </span>
+                </td>
+                <td class='col s1'>
+                      <span class="black-text">
+                        <% if(comments.rating === 'U'){ %>
+                          <i class="material-icons icon-green">thumb_up</i>
+                        <% } else if (comments.rating === 'D'){ %>
+                          <i class="material-icons icon-red">thumb_down</i>
+                        <% } %>
                       </span>
                 </td>
             </tr>
@@ -50,7 +61,10 @@
            <textarea name="comment" id="comment" class="materialize-textarea"></textarea>
            <label for="comment">Write your review here</label>
          </div>
-         <input type="hidden" name="createdBy" value="<%= user._id %>">
+         <input type="hidden" class="rating" name="rating"></input>
+          <a class="btn-floating btn-large waves-effect waves-light grey upvote" value="U"><i class="material-icons">thumb_up</i></a>
+          <a class="btn-floating btn-large waves-effect waves-light grey downvote" value="D"><i class="material-icons">thumb_down</i></a>
+          <input type="hidden" name="createdBy" value="<%= user._id %>">
          <button class="green btn">Submit</button>
        </div>
      </form>

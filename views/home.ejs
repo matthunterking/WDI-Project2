@@ -8,6 +8,8 @@
           </div>
           <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><%= restaurant.restaurantName %><i class="material-icons right">more_vert</i></span>
+          <p><i class="material-icons icon-green">thumb_up</i><%= restaurant.upVotes %></p>
+          <p><i class="material-icons icon-red">thumb_down</i><%= restaurant.downVotes %></p>
           <p><a href="/restaurant/<%= restaurant._id %>">View Restuarant</a></p>
           </div>
           <div class="card-reveal">

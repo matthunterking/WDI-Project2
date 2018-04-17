@@ -64,6 +64,11 @@ function restaurantComment(req, res) {
     .exec()
     .then(restaurant => {
       restaurant.comments.push(req.body);
+      if(req.body.rating === 'U') {
+        restaurant.upVotes += 1;
+      } else if (req.body.rating === 'D') {
+        restaurant.downVotes += 1;
+      }
       return restaurant.save();
     })
     .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
