@@ -30,4 +30,6 @@ $(document).ready(() => {
     rating = 'D';
   });
 
+  $('.sidenav').sidenav();
+
 });

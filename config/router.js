@@ -2,7 +2,7 @@ const router      = require('express').Router();
 const users       = require('../controllers/users');
 const sessions    = require('../controllers/sessions');
 const restaurants = require('../controllers/restaurants');
-const comments = require('../controllers/comments');
+const comments    = require('../controllers/comments');
 
 function secureRoute(req, res, next){
   if(!req.session.userId){
@@ -46,11 +46,18 @@ router.route('/users/:id')
   .put(secureRoute, users.update)
   .delete(secureRoute, users.delete);
 
-router.route('/comments/:id')
-  .post(secureRoute, comments.edit);
+//think this can be deleted!
+// router.route('/comments/:id')
+//   .post(secureRoute, comments.edit);
 
 router.route('/users/:id/edit')
   .get(secureRoute, users.edit);
+
+router.route('/comment/:id')
+  .delete(comments.delete);
+
+router.route('/user/:id/myreviews')
+  .get(secureRoute, comments.index);
 
 router.route('/restaurant/:id/edit')
   .get(secureRoute, restaurants.edit);

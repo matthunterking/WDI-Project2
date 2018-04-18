@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s2">
+          <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
+        </div>
+        <div class="col s6">
+          <span class="black-text">
+            <%= user.name %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr class='row rowHeight'>
+        <th class='col s4 center-align'>Restaurant</th>
+        <th class='col s6 center-align'>Review</th>
+      </tr>
+    </thead>
+<% restaurants.forEach(restaurant => { %>
+  <% if(restaurant.comments.length > 0){ %>
+    <% restaurant.comments.forEach(comment => { %>
+      <% if(comment.createdBy.toString() === user._id.toString()) { %>
+        <tbody>
+        <tr class='row rowHeight'>
+        <td class='col s2 rowHeight'>
+          <img src="<%= restaurant.img %>" alt="" class="circle responsive-img">
+        </td>
+        <td class='col s4 center-align rowHeight'>
+          <div class="valign-wrapper">
+          <span class="black-text">
+          <%= restaurant.restaurantName %>
+        </span>
+        </div>
+        </td>
+                     <td class='col s5 rowHeight'>
+                           <span class="black-text">
+                             <%= comment.comment %>
+                           </span>
+                     </td>
+                     <td class='col s1 rowHeight'>
+                           <span class="black-text">
+                             <% if(comment.rating === 'U'){ %>
+                               <i class="material-icons icon-green">thumb_up</i>
+                             <% } else if (comment.rating === 'D'){ %>
+                               <i class="material-icons icon-red">thumb_down</i>
+                             <% } %>
+                           <% if(locals.isLoggedIn) { %>
+                               <form action="/comment/<%= comment._id %>" method="post">
+                                 <input type="hidden" name="_method" value="DELETE"><form class="col s12" action="/comments/<%= restaurant._id %>" method="POST">
+                               <input type="hidden" name="restuarantid" value="<%= restaurant._id %>"></input>
+                               <input type="hidden" name="commentid" value="<%= comment._id %>"></input>
+                               <input type="hidden" name="userid" value="<%= user._id %>"></input>
+                               <button class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></button>
+                               </form>
+                           <% } %>
+                           </span>
+                     </td>
+                 </tr>
+                 <% } %>
+               <% }) %>
+  <% } %>
+<% }) %>
+</tbody>
+</table>
+
+</div>

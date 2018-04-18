@@ -10,7 +10,7 @@ function createRoute(req, res) {
     .then((user) => {
       if(!user || !user.validatePassword(req.body.password)){
         console.log('password is wrong');
-        res.status(401).render('pages/signin', {message: 'Wrong credentials'});
+        res.status(401).render('sessions/signin', {message: 'Wrong credentials'});
       }
       req.session.userId = user.id;
       res.redirect('/');

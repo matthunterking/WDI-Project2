@@ -1,5 +1,11 @@
-.rowHeight { height: 50px;}
+.rowHeight { height: 80px;}
 
+.customnavcolor{
+  background-color: #20457C;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+/* #3B3A35   #20457C   #5E3448   #FB6648   #ECDFBD */
 .customimg {
   height: 500px;
 }
@@ -10,4 +16,25 @@
 
 .icon-red {
   color: red;
+}
+
+nav div .customtext {
+  color: #ECDFBD;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+nav div .customSideNav {
+  background-color: #ECDFBD;
+  color: #20457C;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.customtext {
+  color: #20457C;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.customhighlighttext {
+  color: #FB6648;
+  font-family: 'Fjalla One', sans-serif;
 }
