@@ -1,26 +1,36 @@
-<h1>New User</h1>
+<div class="container">
+  <h1 class="customtext">Become a Nibbler!</h1>
+  <% if(messages.danger){ %>
+        <div class="col s12 l12">
+          <div class="card error">
+            <div class="card-content ">
+              <span class="card-title"><%= messages.danger %></span>
+            </div>
+          </div>
+        </div>
+      <% } %>
+  <form class="" action="/register" method="POST">
+    <div class='input-field'>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required>
+    </div>
+    <div class='input-field'>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+    </div>
+    <div class='input-field'>
+      <label for="profileImg">Profile Picture</label>
+      <input type="text" name="profileImg" id="profileImg" required>
+    </div>
+    <div class='input-field'>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <div class='input-field'>
+      <label for="passwordConfirmation">Password Confirmation</label>
+      <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
+    </div>
 
-<form class="" action="/register" method="POST">
-  <div>
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name">
+    <button class="green btn">Register</button>
+  </form>
 </div>
-<div>
-  <label for="email">Email</label>
-  <input type="text" name="email" id="email">
-</div>
-<div>
-  <label for="profileImg">Profile Picture</label>
-  <input type="text" name="profileImg" id="profileImg">
-</div>
-<div>
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password">
-</div>
-<div>
-  <label for="passwordConfirmation">Password Confirmation</label>
-  <input type="password" name="passwordConfirmation" id="passwordConfirmation">
-</div>
-
-<button class="button">Register</button>
-</form>

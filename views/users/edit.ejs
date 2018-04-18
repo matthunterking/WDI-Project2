@@ -1,53 +1,62 @@
-<h1>Edit profile</h1>
-<div class="col s12 m8 offset-m2 l6 offset-l3">
-  <div class="card-panel grey lighten-5 z-depth-1">
+<div class="container">
+  <h3 class="customtext center-align">Edit profile</h3>
+  <% if(messages.danger){ %>
+        <div class="col s12 l12">
+          <div class="card error">
+            <div class="card-content ">
+              <span class="card-title"><%= messages.danger %></span>
+            </div>
+          </div>
+        </div>
+      <% } %>
     <div class="row valign-wrapper">
-      <div class="col s2">
-        <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
-      </div>
-      <div class="col s6">
-        <span class="black-text">
-          <%= user.name %>
-        </span>
+    <div class="col s12 card-panel grey lighten-5 z-depth-1">
+      <div class="col s12 m6 l6">
+          <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
+        </div>
+        <div class="col s12 m6 l6">
+          <h4 class="customtext">
+            <%= user.name %>
+          </h4>
+          <div class="col m12">
+            <a class="custommargin waves-effect waves-light yellow black-text btn" href='/users/<%= user._id %>'><i class="material-icons left">person_outline</i>My Profile</a>
+          </div>
+          <div class="col m12">
+            <a class="custommargin waves-effect waves-light orange btn" href='/'><i class="material-icons left">home</i>Home</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 <div>
   <form class="" action="/users/<%= user._id %>" method="post">
     <input type="hidden" name="_method" value="PUT">
-    <input type="text" name="name" id="name_field" value="<%= user.name %>">
+    <input type="text" name="name" id="name_field" value="<%= user.name %>" required>
     <label for="name_field">Name</label>
 
-    <input type="text" name="email" id="email_field" value="<%= user.email %>">
+    <input type="email" name="email" id="email_field" value="<%= user.email %>" required>
     <label for="email_field">email</label>
 
-    <input type="text" name="address" id="address_field" value="<%= user.address %>">
-    <label for="address_field">address</label>
-
-    <input type="text" name="city" id="city_field" value="<%= user.city %>">
-    <label for="city_field">city</label>
-
-    <input type="text" name="profileImg" id="profileImg" value="<%= user.profileImg %>">
+    <input type="text" name="profileImg" id="profileImg" value="<%= user.profileImg %>" required>
     <label for="profileImg">Profile Picture</label>
 
-    <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password">
+    <div class='input-field'>
+      <label for="password">New Password</label>
+      <input type="password" name="password" id="password" required>
     </div>
-    <div>
-      <label for="passwordConfirmation">Password Confirmation</label>
-      <input type="password" name="passwordConfirmation" id="passwordConfirmation">
+    <div class='input-field'>
+      <label for="passwordConfirmation">Confirm New Password</label>
+      <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
     </div>
 
-    <button>SAVE</button>
+    <button class="custommargin waves-effect waves-light green btn">SAVE</button>
 
   </form>
 
 <form action="/users/<%= user.id %>" method="post">
   <input type="hidden" name="_method" value="DELETE">
-  <button>DELETE PROFILE</button>
+  <button class="custommargin waves-effect waves-light red btn">DELETE PROFILE</button>
 </form>
 
+  </div>
 </div>

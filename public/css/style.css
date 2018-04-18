@@ -1,14 +1,14 @@
 .rowHeight { height: 80px;}
 
+.maximgheight { max-height: 80px;}
+
 .customnavcolor{
   background-color: #20457C;
   font-family: 'Fjalla One', sans-serif;
 }
 
 /* #3B3A35   #20457C   #5E3448   #FB6648   #ECDFBD */
-.customimg {
-  height: 500px;
-}
+
 
 .icon-green {
   color: green;
@@ -16,6 +16,12 @@
 
 .icon-red {
   color: red;
+}
+
+.error {
+  border: 2px solid #FB6648;
+  color: #FB6648;
+  font-family: 'Fjalla One', sans-serif;
 }
 
 nav div .customtext {
@@ -37,4 +43,12 @@ nav div .customSideNav {
 .customhighlighttext {
   color: #FB6648;
   font-family: 'Fjalla One', sans-serif;
+}
+
+.custommargin{
+  margin-top: 10px;
+}
+
+.customimagesize{
+  min-height: 200px;
 }

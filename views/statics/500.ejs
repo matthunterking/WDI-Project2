@@ -1,6 +1,10 @@
 <div class='container'>
-  <h3 class='center-align customtext'>You have signed out</h3>
+  <h3 class='center-align customtext'>Oh dear something has gone wrong</h3>
   <div class="center-align col s4 offset-s1">
     <a class="waves-effect waves-light orange btn" href='/'><i class="material-icons left">home</i>Return to Homepage</a>
   </div>
 </div>
+
+<% if(!process.env.host) {%>
+<h4><%= err.message %></h4>
+<% } %>

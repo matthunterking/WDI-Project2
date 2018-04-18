@@ -13,8 +13,10 @@ const User                = require('./models/user');
 // const Restaurant          = require('./models/Restaurant');
 
 const {port, databaseURI} = require('./config/environment');
+const customResponses     = require('./lib/customResponses');
 
 mongoose.connect(databaseURI);
+
 
 
 app.set('view engine', 'ejs');
@@ -32,6 +34,9 @@ app.use(methodOverride(req => {
   }
 }));
 
+app.use(flash());
+app.use(customResponses);
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'secret',
@@ -39,11 +44,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use(flash());
-
 app.use((req, res, next) => {
   if(!req.session.userId) return next();
-
   User
     .findById(req.session.userId)
     .then((user) =>{
@@ -55,5 +57,16 @@ app.use((req, res, next) => {
 });
 
 app.use(router);
+
+app.use((err, req, res, next) =>{
+  if(err) {
+    err.status = err.status || 500;
+    err.message = err.message || 'Internal Server Error';
+    res.status(err.status);
+    res.locals.err = err;
+    return res.render(`statics/${err.status}`);
+  }
+  next();
+});
 
 app.listen(port, () => console.log(`Running on ${port}`));

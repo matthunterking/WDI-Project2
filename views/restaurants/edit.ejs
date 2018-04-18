@@ -1,31 +1,49 @@
-<h1>Edit Restaurant</h1>
-
-<h2><%= restaurant.restaurantName %></h2>
-<div>
+<div class="container">
+  <h1 class="customtext">Edit Restaurant</h1>
+  <% if(messages.danger){ %>
+        <div class="col s12 l12">
+          <div class="card error">
+            <div class="card-content ">
+              <span class="card-title"><%= messages.danger %></span>
+            </div>
+          </div>
+        </div>
+      <% } %>
+<h3 class="customtext center-align"><%= restaurant.restaurantName %></h3>
   <form class="" action="/restaurant/<%= restaurant._id %>" method="post">
     <input type="hidden" name="_method" value="PUT">
+    <div class='input-field'>
     <input type="text" name="restaurantName" id="restaurantName" value="<%= restaurant.restaurantName %>">
     <label for="restaurantName">Name</label>
-
+  </div>
+<div class='input-field'>
     <input type="text" name="img" id="img" value="<%= restaurant.img %>">
     <label for="img">img</label>
-
+  </div>
+<div class='input-field'>
     <input type="text" name="address" id="address" value="<%= restaurant.address %>">
     <label for="address">address</label>
-
+      </div>
+<div class='input-field'>
     <input type="text" name="city" id="city" value="<%= restaurant.city %>">
     <label for="city">city</label>
-
+      </div>
+<div class='input-field'>
+    <input type="text" name="postcode" id="postcode" value="<%= restaurant.postcode %>">
+    <label for="postcode">Postcode</label>
+      </div>
+<div class='input-field'>
     <input type="text" name="cuisine" id="cuisine" value="<%= restaurant.cuisine %>">
     <label for="cuisine">cuisine</label>
+      </div>
 
-    <button>SAVE</button>
+    <button class="custommargin waves-effect waves-light green btn">Save</button>
 
   </form>
 
 <form action="/restaurant/<%= restaurant.id %>" method="post">
   <input type="hidden" name="_method" value="DELETE">
-  <button>DELETE Restaurant</button>
+  <button class="custommargin waves-effect waves-light red btn">Delete Restaurant</button>
 </form>
 
 </div>

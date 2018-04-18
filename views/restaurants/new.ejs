@@ -1,29 +1,39 @@
-<h1>New Restaurant</h1>
-
-<form class="" action="/restaurant" method="POST">
-  <div>
-  <label for="restaurantName">Name</label>
-  <input type="text" name="restaurantName" id="restaurantName">
+<div class="container">
+  <h1 class="customtext">New Restaurant</h1>
+  <% if(messages.danger){ %>
+        <div class="col s12 l12">
+          <div class="card error">
+            <div class="card-content ">
+              <span class="card-title"><%= messages.danger %></span>
+            </div>
+          </div>
+        </div>
+      <% } %>
+  <form class="" action="/restaurant" method="POST">
+    <div class='input-field'>
+      <label for="restaurantName">Name</label>
+      <input type="text" name="restaurantName" id="restaurantName" required>
+    </div>
+  <div class='input-field'>
+    <label for="img">Image Url</label>
+    <input type="text" name="img" id="img" required>
+  </div>
+  <div class='input-field'>
+    <label for="address">Address</label>
+    <input type="text" name="address" id="address">
+  </div>
+  <div class='input-field'>
+    <label for="city">City</label>
+    <input type="text" name="city" id="city">
+  </div>
+  <div class='input-field'>
+    <label for="postcode">Postcode</label>
+    <input type="text" name="city" id="city">
+  </div>
+  <div class='input-field'>
+    <label for="cuisine">Cuisine</label>
+    <input type="text" name="cuisine" id="cuisine">
+  </div>
+  <button class="green btn">Register</button>
+  </form>
 </div>
-<div>
-  <label for="img">Image Url</label>
-  <input type="text" name="img" id="img">
-</div>
-<div>
-  <label for="address">Address</label>
-  <input type="text" name="address" id="address">
-</div>
-<div>
-  <label for="city">City</label>
-  <input type="text" name="city" id="city">
-</div>
-<div>
-  <label for="cuisine">cuisine</label>
-  <input type="text" name="cuisine" id="cuisine">
-</div>
-<div>
-  <label for="comments">comments?</label>
-  <input type="text" name="comments" id="comments">
-</div>
-<button class="button">Register</button>
-</form>

@@ -1,10 +1,20 @@
-<h1>Sign in</h1>
+<div class="container">
+  <h1 class="customtext">Sign in</h1>
+  <% if(messages.danger){ %>
+        <div class="col s12 l12">
+          <div class="card error">
+            <div class="card-content ">
+              <span class="card-title"><%= messages.danger %></span>
+            </div>
+          </div>
+        </div>
+      <% } %>
 <form action="/signin" method="POST">
-  <div>
+  <div class='input-field'>
     <input type="email" name="email" id="email" required>
     <label for="email_field">Email</label>
   </div>
-  <div>
+  <div class='input-field'>
     <input type="password" name="password" id="password" required>
     <label for="password_field">Password</label>
   </div>
@@ -12,5 +22,4 @@
     <button class="green btn">Sign In</button>
   </div>
 </form>
-
 </div>

@@ -1,56 +1,59 @@
 <div class="container">
-  <h5 class=center-align><%= restaurant.restaurantName %></h5>
-  <img class='center-align responsive-img customimg' src="<%= restaurant.img %>">
-  <p>Address: <%= restaurant.address %></p>
-  <p>City: <%= restaurant.city %></p>
-  <p>Postcode: <%= restaurant.postcode %></p>
-  <p>Cuisine: <%= restaurant.cuisine %></p>
-  <p><i class="material-icons icon-green">thumb_up</i><%= restaurant.upVotes %></p>
-  <p><i class="material-icons icon-red">thumb_down</i><%= restaurant.downVotes %></p>
-
+  <h5 class="center-align customtext"><%= restaurant.restaurantName %></h5>
+  <div class='img-wrapper center-align'>
+    <img class='center-align responsive-img' src="<%= restaurant.img %>">
+  </div>
+  <div class='row'>
+    <div class='col s12 m4'>
+      <p class='center-align customhighlighttext'><%= restaurant.address %></p>
+      <p class='center-align customhighlighttext'><%= restaurant.city %></p>
+      <p class='center-align customhighlighttext'><%= restaurant.postcode %></p>
+    </div>
+    <div class='col s12 m4'>
+      <h6 class='center-align customhighlighttext'><%= restaurant.cuisine %></h6>
+    </div>
+    <div class='col s12 m4'>
+      <div class="valign-wrapper row">
+        <p class="col icon-green"><i class="material-icons icon-green">thumb_up</i>  <%= restaurant.upVotes %></p>
+        <p class="col icon-red"><i class="material-icons icon-red">thumb_down</i>  <%= restaurant.downVotes %></p>
+      </div>
+    </div>
+  <div>
  <% if(restaurant.comments.length > 0){ %>
-   <table>
+   <table class="centered striped">
       <thead>
         <tr class='row rowHeight'>
-          <th class='col s4 center-align'>Nibbler</th>
+          <th class='col s6 center-align'>Nibbler</th>
           <th class='col s6 center-align'>Review</th>
         </tr>
       </thead>
       <tbody>
           <% restaurant.comments.forEach(comments => { %>
             <% if(comments.createdBy) { %>
-            <tr class='row rowHeight'>
-                <td class='col s1'>
-                        <img src="<%= comments.createdBy.profileImg %>" alt="" class="circle responsive-img">
+            <tr class='row rowHeight valign-wrapper'>
+                <td class='col s3 m2'>
+                  <img src="<%= comments.createdBy.profileImg %>" alt="Profile picture of <%= comments.createdBy.name%>"
+                    class="circle responsive-img maximgheight">
                 </td>
-                <td class='col s5 center-align'>
+                <td class='col s1 m4 center-align valign-wrapper'>
                   <div class="valign-wrapper">
-                        <span class="black-text">
+                        <span class="black-text center-align">
                           <%= comments.createdBy.name %>
                         </span>
                   </div>
                 </td>
-                <td class='col s5'>
+                <td class='col s5 m5'>
                       <span class="black-text">
                         <%= comments.comment %>
                       </span>
                 </td>
-                <td class='col s1'>
+                <td class='col s1 m1'>
                       <span class="black-text">
                         <% if(comments.rating === 'U'){ %>
                           <i class="material-icons icon-green">thumb_up</i>
                         <% } else if (comments.rating === 'D'){ %>
                           <i class="material-icons icon-red">thumb_down</i>
                         <% } %>
-                      <% if(locals.isLoggedIn) { %>
-                        <% if(comments.createdBy._id.toString() === user._id.toString()) { %>
-                          <form class="col s12" action="/comments/<%= restaurant._id %>" method="POST">
-                          <input type="hidden" name="restuarantid" value="<%= restaurant._id %>"></input>
-                          <input type="hidden" name="commentid" value="<%= comments._id %>"></input>
-                          <button class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">edit</i></button>
-                          </form>
-                        <% } %>
-                      <% } %>
                       </span>
                 </td>
             </tr>
@@ -61,7 +64,6 @@
 <% } else { %>
   <p>Be the first to review <%= restaurant.restaurantName %></p>
 <% } %>
-<hr>
  <% if(locals.isLoggedIn){ %>
    <div class="row">
      <form class="col s12" action="/restaurant/<%= restaurant._id %>" method="POST">
@@ -71,21 +73,19 @@
            <label for="comment">Write your review here</label>
          </div>
          <input type="hidden" class="rating" name="rating"></input>
-          <a class="btn-floating btn-large waves-effect waves-light grey upvote" value="U"><i class="material-icons">thumb_up</i></a>
-          <a class="btn-floating btn-large waves-effect waves-light grey downvote" value="D"><i class="material-icons">thumb_down</i></a>
+          <a class="col offset-s1 btn-floating btn-large waves-effect waves-light grey upvote" value="U"><i class="material-icons">thumb_up</i></a>
+          <a class="col offset-s1 btn-floating btn-large waves-effect waves-light grey downvote" value="D"><i class="material-icons">thumb_down</i></a>
           <input type="hidden" name="createdBy" value="<%= user._id %>">
-         <button class="green btn">Submit</button>
+         <button class="col offset-s3 green btn">Submit</button>
        </div>
      </form>
+     <a class="customhighlighttext right" href='/restaurant/<%= restaurant._id %>/edit'>Edit this restaurant</a>
    </div>
 <% } else { %>
-  <p>You must be logged in to make a comment</p>
-  <a href='/signin'>Login</a>
-  <a href='/register'>Sign up</a>
+  <div class="row">
+  <h5 class="customhighlighttext col s12 center-align">You must be logged in to make a comment</h5>
+  <a class="customhighlighttext col s6 center-align" href='/signin'>Login</a>
+  <a class="customhighlighttext col s6 center-align" href='/register'>Sign up</a>
 <% } %>
 
 </div>
-
-<hr>
-
-<a href='/restaurant/<%= restaurant._id %>/edit'>Edit Restaurant</a>

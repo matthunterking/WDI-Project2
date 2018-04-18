@@ -15,7 +15,13 @@ function usersShow(req, res) {
 function usersCreate(req, res) {
   User
     .create(req.body)
-    .then(() => res.redirect('/'));
+    .then(() => res.redirect('/'))
+    .catch((err) => {
+      if(err.name === 'ValidationError'){
+        req.flash('danger', 'Your password does not match');
+        return res.status(400).render('sessions/new');
+      }
+    });
 }
 
 function usersEdit(req, res) {
@@ -32,6 +38,12 @@ function usersUpdate(req, res) {
     .then(user => {
       user = Object.assign(user, req.body);
       return user.save();
+    })
+    .catch((err) => {
+      if(err.name === 'ValidationError'){
+        req.flash('danger', 'Your password does not match');
+        return res.status(400).render('users/edit');
+      }
     })
     .then(user => res.redirect(`/users/${user.id}`));
 }

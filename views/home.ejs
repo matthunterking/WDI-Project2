@@ -1,32 +1,34 @@
-<h3 class='center-align customtext'>Welcome to Nibble</h3>
-<p class='center-align customtext'>
-  Nibble is your guide to worlds newest restaurants, cafés and gastropubs.</p>
-<p class='center-align customtext'>
-  Discover great places to eat near you, all of which have been tested and reviewed
-  by our community of Nibblers!
-</p>
-<div class="row customtext">
-<% restaurants.forEach(restaurant => { %>
-    <div class="card medium col s3 m4">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="<%= restaurant.img %>">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator customtext"><%= restaurant.restaurantName %><i class="material-icons right">more_vert</i></span>
-          <div class="valign-wrapper row">
-            <p class="icon-green col"><i class="material-icons icon-green">thumb_up</i>  <%= restaurant.upVotes %></p>
-            <p class="icon-red col"><i class="material-icons icon-red">thumb_down</i>  <%= restaurant.downVotes %></p>
+<div class="container">
+  <h3 class='center-align customtext'>Welcome to Nibble</h3>
+  <p class='center-align customtext'>
+    Nibble is your guide to worlds newest restaurants, cafés and gastropubs.</p>
+    <p class='center-align customtext'>
+      Discover great places to eat near you, all of which have been tested and reviewed
+      by our community of Nibblers!
+    </p>
+    <div class="row customtext">
+    <% restaurants.forEach(restaurant => { %>
+      <div class="card medium col s12 m4">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator customimagesize" src="<%= restaurant.img %>">
+            </div>
+            <div class="card-content">
+            <span class="card-title activator customtext"><%= restaurant.restaurantName %><i class="material-icons right">more_vert</i></span>
+            <div class="valign-wrapper row">
+              <p class="icon-green col"><i class="material-icons icon-green">thumb_up</i>  <%= restaurant.upVotes %></p>
+              <p class="icon-red col"><i class="material-icons icon-red">thumb_down</i>  <%= restaurant.downVotes %></p>
+            </div>
+              <p><a href="/restaurant/<%= restaurant._id %>">View Restuarant</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title customtext"><%= restaurant.restaurantName %><i class="material-icons right">close</i></span>
+              <p>Address:  <span class="customhighlighttext"><%= restaurant.address %></span></p>
+              <p>City:  <span class="customhighlighttext"><%= restaurant.city %></span></p>
+              <p>Post Code:  <span class="customhighlighttext"><%= restaurant.postcode %></span></p>
+              <p>Cuisine:  <span class="customhighlighttext"><%= restaurant.cuisine %></span></p>
+              <p><a class="customhighlighttext" href="/restaurant/<%= restaurant._id %>">View Restuarant</a></p>
+            </div>
           </div>
-          <p><a href="/restaurant/<%= restaurant._id %>">View Restuarant</a></p>
-        </div>
-          <div class="card-reveal">
-            <span class="card-title customtext"><%= restaurant.restaurantName %><i class="material-icons right">close</i></span>
-            <p>Address:  <span class="customhighlighttext"><%= restaurant.address %></span></p>
-            <p>City:  <span class="customhighlighttext"><%= restaurant.city %></span></p>
-            <p>Post Code:  <span class="customhighlighttext"><%= restaurant.postcode %></span></p>
-            <p>Cuisine:  <span class="customhighlighttext"><%= restaurant.cuisine %></span></p>
-            <p><a class="customhighlighttext" href="/restaurant/<%= restaurant._id %>">View Restuarant</a></p>
-          </div>
-        </div>
-<% }) %>
+    <% }) %>
+    </div>
 </div>

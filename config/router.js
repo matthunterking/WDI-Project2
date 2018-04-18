@@ -63,7 +63,7 @@ router.route('/restaurant/:id/edit')
   .get(secureRoute, restaurants.edit);
 
 router.route('/*').get((rew, res) => {
-  res.render('/statics/404');
+  res.render('statics/404');
 });
 
 module.exports = router;

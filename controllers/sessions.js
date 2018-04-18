@@ -9,8 +9,8 @@ function createRoute(req, res) {
     .findOne({email: req.body.email})
     .then((user) => {
       if(!user || !user.validatePassword(req.body.password)){
-        console.log('password is wrong');
-        res.status(401).render('sessions/signin', {message: 'Wrong credentials'});
+        req.flash('danger', 'Wrong Credentials');
+        res.status(401).render('sessions/signin');
       }
       req.session.userId = user.id;
       res.redirect('/');
@@ -18,7 +18,7 @@ function createRoute(req, res) {
 }
 
 function deleteRoute(req, res){
-  return req.session.regenerate(() => res.redirect('/'));
+  return req.session.regenerate(() => res.render('sessions/signout'));
 }
 
 module.exports = {

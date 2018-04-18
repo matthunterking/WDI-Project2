@@ -1,22 +1,38 @@
 <div class="container">
-  <div class="col s12 m8 offset-m2 l6 offset-l3">
-    <div class="card-panel grey lighten-5 z-depth-1">
+
+  <div class="container">
+    <% if(messages.danger){ %>
+          <div class="col s12 l12">
+            <div class="card error">
+              <div class="card-content ">
+                <span class="card-title"><%= messages.danger %></span>
+              </div>
+            </div>
+          </div>
+        <% } %>
       <div class="row valign-wrapper">
-        <div class="col s2">
-          <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
-        </div>
-        <div class="col s6">
-          <span class="black-text">
-            <%= user.name %>
-          </span>
+      <div class="col s12 card-panel grey lighten-5 z-depth-1">
+        <div class="col s12 m6 l6">
+            <img src="<%= user.profileImg %>" alt="" class="circle responsive-img">
+          </div>
+          <div class="col s12 m6 l6">
+            <h4 class="customtext">
+              <%= user.name %>
+            </h4>
+            <div class="col m12">
+              <a class="custommargin waves-effect waves-light yellow black-text customtext btn" href='/users/<%= user._id %>'><i class="material-icons left">person_outline</i>My Profile</a>
+            </div>
+            <div class="col m12">
+              <a class="custommargin waves-effect waves-light orange btn" href='/'><i class="material-icons left">home</i>Home</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <table>
+
+  <table class="centered striped">
     <thead>
       <tr class='row rowHeight'>
-        <th class='col s4 center-align'>Restaurant</th>
+        <th class='col s6 center-align'>Restaurant</th>
         <th class='col s6 center-align'>Review</th>
       </tr>
     </thead>
@@ -25,29 +41,31 @@
     <% restaurant.comments.forEach(comment => { %>
       <% if(comment.createdBy.toString() === user._id.toString()) { %>
         <tbody>
-        <tr class='row rowHeight'>
-        <td class='col s2 rowHeight'>
-          <img src="<%= restaurant.img %>" alt="" class="circle responsive-img">
+        <tr class='row rowHeight valign-wrapper'>
+        <td class='col s3 m2'>
+          <img src="<%= restaurant.img %>" alt="" class="circle responsive-img maximgheight">
         </td>
-        <td class='col s4 center-align rowHeight'>
+        <td class='col s3 m4 center-align valign-wrapper'>
           <div class="valign-wrapper">
-          <span class="black-text">
+          <span class="black-text center-align">
           <%= restaurant.restaurantName %>
         </span>
         </div>
         </td>
-                     <td class='col s5 rowHeight'>
-                           <span class="black-text">
-                             <%= comment.comment %>
-                           </span>
-                     </td>
-                     <td class='col s1 rowHeight'>
+        <td class='col s4 rowHeight'>
+             <span class="black-text">
+               <%= comment.comment %>
+             </span>
+       </td>
+                     <td class='col s1 rowHeight valign-wrapper'>
                            <span class="black-text">
                              <% if(comment.rating === 'U'){ %>
                                <i class="material-icons icon-green">thumb_up</i>
                              <% } else if (comment.rating === 'D'){ %>
                                <i class="material-icons icon-red">thumb_down</i>
                              <% } %>
+                             </td>
+                             <td class='col s1 rowHeight valign-wrapper'>
                            <% if(locals.isLoggedIn) { %>
                                <form action="/comment/<%= comment._id %>" method="post">
                                  <input type="hidden" name="_method" value="DELETE"><form class="col s12" action="/comments/<%= restaurant._id %>" method="POST">
