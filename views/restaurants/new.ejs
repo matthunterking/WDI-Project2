@@ -30,10 +30,19 @@
     <label for="postcode">Postcode</label>
     <input type="text" name="city" id="city">
   </div>
-  <div class='input-field'>
-    <label for="cuisine">Cuisine</label>
-    <input type="text" name="cuisine" id="cuisine">
-  </div>
+  <div class="input-field col s12">
+      <select  name="cuisine" id="cuisine">
+        <option value="" disabled selected>Please choose one of the options</option>
+        <option value="British">British</option>
+        <option value="French">French</option>
+        <option value="Indian">Indian</option>
+        <option value="International">International</option>
+        <option value="German">German</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Chinese">Chinese</option>
+      </select>
+      <label>Cuisine</label>
+    </div>
   <button class="green btn">Register</button>
   </form>
 </div>

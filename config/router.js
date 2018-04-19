@@ -23,10 +23,10 @@ router.route('/register')
 
 router.route('/restaurant')
   .get(restaurants.show)
-  .post(restaurants.create);
+  .post(secureRoute, restaurants.create);
 
 router.route('/restaurant/new')
-  .get(restaurants.new);
+  .get(secureRoute, restaurants.new);
 
 router.route('/signin')
   .get(sessions.new)
@@ -46,15 +46,11 @@ router.route('/users/:id')
   .put(secureRoute, users.update)
   .delete(secureRoute, users.delete);
 
-//think this can be deleted!
-// router.route('/comments/:id')
-//   .post(secureRoute, comments.edit);
-
 router.route('/users/:id/edit')
   .get(secureRoute, users.edit);
 
 router.route('/comment/:id')
-  .delete(comments.delete);
+  .delete(secureRoute, comments.delete);
 
 router.route('/user/:id/myreviews')
   .get(secureRoute, comments.index);

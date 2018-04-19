@@ -32,5 +32,8 @@ $(document).ready(() => {
 
   $('.sidenav').sidenav();
 
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
 
 });
