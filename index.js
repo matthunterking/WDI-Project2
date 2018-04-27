@@ -9,8 +9,7 @@ const router              = require('./config/router');
 mongoose.Promise          = require('bluebird');
 const session             = require('express-session');
 const flash               = require('express-flash');
-const User                = require('./models/user');
-// const Restaurant          = require('./models/Restaurant');
+const User                = require('./models/User');
 
 const {port, databaseURI} = require('./config/environment');
 const customResponses     = require('./lib/customResponses');

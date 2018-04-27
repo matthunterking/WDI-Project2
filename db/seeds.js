@@ -4,8 +4,8 @@ mongoose.Promise        = require('bluebird');
 const { databaseURI }   = require('../config/environment');
 mongoose.connect(databaseURI);
 
-const User              = require('../models/user');
-const Restaurant        = require('../models/restaurant');
+const User              = require('../models/User');
+const Restaurant        = require('../models/Restaurant');
 
 User.collection.drop();
 Restaurant.collection.drop();
