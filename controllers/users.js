@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/User');
 
 function usersNew(req, res) {
   res.render('sessions/new');
