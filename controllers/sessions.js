@@ -6,7 +6,7 @@ function newRoute(req, res) {
 
 function createRoute(req, res) {
   User
-    .findOne({email: req.body.email})
+    .findOne({ email: req.body.email })
     .then((user) => {
       if(!user || !user.validatePassword(req.body.password)){
         req.flash('danger', 'Wrong Credentials');
