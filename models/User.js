@@ -22,12 +22,9 @@ userSchema.pre('validate', function checkPassword(next){
   next();
 });
 
-
 userSchema.methods.validatePassword = function validatePassword(password){
   return bcrypt.compareSync(password, this.password);
 };
-
-
 
 userSchema.pre('save', function HashPassword(next) {
   if(this.isModified('password')){
@@ -35,6 +32,5 @@ userSchema.pre('save', function HashPassword(next) {
   }
   next();
 });
-
 
 module.exports = mongoose.model('User', userSchema);

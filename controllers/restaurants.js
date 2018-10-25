@@ -5,25 +5,21 @@ function restaurantIndex(req, res){
     .find()
     .exec()
     .then(restaurants => {
-      res.render('home', {restaurants});
+      res.render('home', { restaurants });
     });
 }
-
 
 function restaurantShow(req, res) {
   Restaurant
     .findById(req.params.id)
     .populate('comments.createdBy')
     .exec()
-    .then(restaurant => res.render('restaurants/show', {restaurant}));
+    .then(restaurant => res.render('restaurants/show', { restaurant }));
 }
-
-
 
 function restaurantsNew(req, res) {
   res.render('restaurants/new');
 }
-
 
 function restaurantsCreate(req, res) {
   Restaurant
@@ -35,7 +31,7 @@ function restaurantsEdit(req, res) {
   Restaurant
     .findById(req.params.id)
     .exec()
-    .then(restaurant => res.render('restaurants/edit', {restaurant}));
+    .then(restaurant => res.render('restaurants/edit', { restaurant }));
 }
 
 function restaurantsUpdate(req, res) {
@@ -72,22 +68,6 @@ function restaurantComment(req, res) {
     })
     .then(restaurant => res.redirect(`/restaurant/${restaurant.id}`));
 }
-
-// function restaurantShowReviews(req, res) {
-//   Restaurant
-//     .find()
-//     .exec()
-//     .then(restaurants => {
-//       console.log(restaurants);
-//
-//       const userReviews = [];
-//
-//       // loop over restaurants
-//         // loop comments of singular restaurant
-//           // comment.createdBy === req.currentUser.id
-//             // userReviews.push(comment)
-
-
 
 module.exports = {
   index: restaurantIndex,

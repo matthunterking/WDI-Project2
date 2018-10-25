@@ -9,7 +9,7 @@ function usersShow(req, res) {
     .findById(req.params.id)
     .populate()
     .exec()
-    .then(user => res.render('users/show', {user}));
+    .then(user => res.render('users/show', { user }));
 }
 
 function usersCreate(req, res) {
@@ -28,7 +28,7 @@ function usersEdit(req, res) {
   User
     .findById(req.params.id)
     .exec()
-    .then(user => res.render('users/edit', {user}));
+    .then(user => res.render('users/edit', { user }));
 }
 
 function usersUpdate(req, res) {
@@ -55,7 +55,6 @@ function usersDelete(req, res) {
     .then(user => user.remove())
     .then(req.session.regenerate(() => res.redirect('/')));
 }
-
 
 module.exports = {
   show: usersShow,

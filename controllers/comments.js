@@ -6,8 +6,7 @@ function commentIndex(req, res) {
     .populate('comments')
     .exec()
     .then(restaurants => {
-      res.render('comments/index', {restaurants});
-      console.log(restaurants);
+      res.render('comments/index', { restaurants });
     });
 }
 
@@ -17,7 +16,6 @@ function commentDelete(req, res) {
     .exec()
     .then(restaurant => {
       const deletecomment = restaurant.comments.id(req.body.commentid);
-      console.log(`the comment to be deleted is ${deletecomment}`);
       deletecomment.remove();
       return restaurant.save();
     })

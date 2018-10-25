@@ -1,8 +1,8 @@
-const router      = require('express').Router();
-const users       = require('../controllers/users');
-const sessions    = require('../controllers/sessions');
+const router = require('express').Router();
+const users = require('../controllers/users');
+const sessions = require('../controllers/sessions');
 const restaurants = require('../controllers/restaurants');
-const comments    = require('../controllers/comments');
+const comments = require('../controllers/comments');
 
 function secureRoute(req, res, next){
   if(!req.session.userId){
@@ -58,7 +58,7 @@ router.route('/user/:id/myreviews')
 router.route('/restaurant/:id/edit')
   .get(secureRoute, restaurants.edit);
 
-router.route('/*').get((rew, res) => {
+router.route('/*').get((req, res) => {
   res.render('statics/404');
 });
 

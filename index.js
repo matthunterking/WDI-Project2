@@ -1,22 +1,20 @@
-const express             = require('express');
-const app                 = express();
-const bodyParser          = require('body-parser');
-const methodOverride      = require('method-override');
-const morgan              = require('morgan');
-const mongoose            = require('mongoose');
-const expressLayouts      = require('express-ejs-layouts');
-const router              = require('./config/router');
-mongoose.Promise          = require('bluebird');
-const session             = require('express-session');
-const flash               = require('express-flash');
-const User                = require('./models/User');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
+const router = require('./config/router');
+mongoose.Promise = require('bluebird');
+const session = require('express-session');
+const flash = require('express-flash');
+const User = require('./models/User');
 
-const {port, databaseURI} = require('./config/environment');
-const customResponses     = require('./lib/customResponses');
+const { port, databaseURI } = require('./config/environment');
+const customResponses = require('./lib/customResponses');
 
 mongoose.connect(databaseURI);
-
-
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
@@ -35,7 +33,6 @@ app.use(methodOverride(req => {
 
 app.use(flash());
 app.use(customResponses);
-
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'secret',

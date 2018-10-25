@@ -13,6 +13,7 @@ function createRoute(req, res) {
         res.status(401).render('sessions/signin');
       }
       req.session.userId = user.id;
+      req.session.isLoggedIn = true;
       res.redirect('/');
     });
 }
