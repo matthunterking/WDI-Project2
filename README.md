@@ -9,7 +9,7 @@ Nibble is a full stack restaurant review site where users can add, review and co
 This was my second project as part of the General Assembly Web Development Immersive course. The objective was to build a full stack web application using Node.js.
 
 ### Timeframe
-1 week (March 2018)
+1 week (April 2018)
 
 ---
 
