@@ -49,7 +49,7 @@ Only logged in users are able to make comments or add, edit or remove restaurant
 
 To begin I identified users and restaurants as my primary resources. For each of these I planned the restful routes that I would need to create in order and began wireframing the look of the site.
 
-![planning](/screenshots/planning.jpg)
+![planning](/screenshots/planningImage.jpg)
 
 I started by creating a model for the restaurant resource and then moved onto each of the restful routes. Once I had completed this I moved onto the user resource and added in authentication.
 
